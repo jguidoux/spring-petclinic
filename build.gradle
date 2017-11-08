@@ -68,6 +68,10 @@ ext {
     tomcat_version = '7.0.11'
 }
 
+tasks.withType(JavaCompile) {
+   options.incremental = true // one flag, and things will get MUCH faster
+}
+
 configurations.all {
     resolutionStrategy {
         eachDependency { details ->
