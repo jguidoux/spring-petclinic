@@ -1,9 +1,35 @@
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+          classpath 'com.bmuschko:gradle-tomcat-plugin:2.4.1'
+    }
+}
+
+plugins {
+    id 'com.gradle.build-scan' version '1.10'
+}
+
+
+apply plugin: 'com.bmuschko.tomcat'
+
+
+buildScan {
+    server = 'http://localhost:8180'
+    publishAlways()
+}
+
 apply plugin: 'java'
 apply plugin: 'war'
 
 repositories {
     mavenCentral()
 }
+
+
 
 ext {
     java_version = '1.6'
@@ -41,18 +67,6 @@ ext {
     mysql_version = '5.1.22'
     tomcat_version = '7.0.11'
 }
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:0.9.7'
-    }
-}
-
-apply plugin: 'tomcat'
 
 configurations.all {
     resolutionStrategy {
